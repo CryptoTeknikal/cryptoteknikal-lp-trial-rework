@@ -379,8 +379,10 @@ at `quality=82`, and swapping the base64 in the matching `<img>`.
 11. Who it is for (6 personas)
 12. 7 bonuses, each with the shots that prove it - four of them decks - + total
     value Rp15.000.000
-13. Pricing - one membership, twelve months, with the 30-day money-back guarantee
-    directly under the card
+13. Pricing - the Scalev page's three plans side by side: 3 Bulan (Rp799.000),
+    12 Bulan (Rp1.999.000, the featured *Best Deal*) and Lifetime (Rp4.999.000,
+    *Best Seller*), each with the same benefits, and the 30-day money-back guarantee
+    under the row
 14. Warren Buffett quote - a ruled band, the portrait standing on the bottom rule,
     a *Gabung Sekarang* under the line it argues for
 15. FAQ - centred head over the accordion, then a last *Gabung Sekarang*
@@ -391,7 +393,9 @@ at `quality=82`, and swapping the base64 in the matching `<img>`.
 - Responsive down to 360px, with a sticky bottom CTA bar on mobile. The bar stays
   parked below the fold until the hero CTA has gone behind the nav, and drops back down
   wherever one of the page's own buttons has come onto the screen - the three that close
-  a section, the plan's - so the reader is never offered the same button twice at once.
+  a section - or any part of the pricing section, since the bar only points there and
+  the three plans stacked on a phone run several screens between their buttons. The
+  reader is never offered the same button twice at once.
   The top threshold is the nav's own height, measured rather than hardcoded; the bottom
   one is the line the reveal already uses.
 - The nav is the one full-bleed band on the page: `.navin` carries its own

@@ -478,28 +478,45 @@ img.vart{object-fit:contain;background:#0b0614}
 @keyframes proofup{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 @keyframes proofdown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
 
-/* ===== PRICING ===== */
-.pricewrap{display:grid;grid-template-columns:1fr;max-width:460px;margin:0 auto;gap:22px;align-items:stretch}
-.plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 26px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;position:relative}
+/* ===== PRICING =====
+   The Scalev page's three durations - 3 bulan, 12 bulan, lifetime - side by
+   side. Every plan carries the same benefits, so what differs sits at the top
+   of the card and the lists run level across the row. The cards are subgrids of
+   .pricewrap the way the value cards are of .vgrid: name, term, both prices,
+   the per-day line, the list and the button sit in seven rows the grid owns, so
+   the prices and the buttons line up however a term line wraps. The card
+   carries its own row-gap, which keeps the gutter between the cards and out of
+   them. */
+.pricewrap{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 26px;box-shadow:var(--shadow-sm);position:relative;
+  display:grid;grid-template-rows:subgrid;grid-row:span 7;row-gap:0}
 .plan.pro{border:1.5px solid var(--brand);background:linear-gradient(165deg,rgba(255,0,255,.09),var(--card) 55%);box-shadow:var(--shadow),0 0 56px rgba(255,0,255,.12)}
+/* One accent on the page, so the second badge is the same colour held back
+   rather than a second colour: the featured plan's is filled, lifetime's is
+   the outline. */
+.plan .ptag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1;padding:7px 16px;border-radius:99px;box-shadow:0 8px 20px rgba(255,0,255,.4);white-space:nowrap}
+.plan .ptag.soft{background:var(--soft2);color:var(--brand2);border:1px solid rgba(255,0,255,.45);padding:6px 15px;box-shadow:none}
 .plan .pname{font-size:1.5rem;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:var(--ink)}
-.plan .psub{margin-top:3px;font-size:.95rem;color:var(--mut)}
-/* The struck total value outsizes the price paid on purpose: what the membership
-   is worth should read bigger than what it costs. The mute plus the rule keeps
-   the paid price the brighter of the two, so the hierarchy still points at it. */
+.plan .psub{margin-top:3px;font-size:.95rem;color:var(--mut);text-wrap:balance}
+/* The struck list price outsizes the price paid on purpose: what the plan is
+   worth should read bigger than what it costs. The mute plus the rule keeps
+   the paid price the brighter of the two, so the hierarchy still points at it.
+   The largest of the three, Rp15.000.000, still clears a third of the row at
+   every width the row holds three. */
 .plan .pcoret{display:block;margin-top:14px;color:var(--soft-mut);text-decoration:line-through;font-size:clamp(2.05rem,3.45vw,2.65rem);font-weight:600;letter-spacing:-.025em;line-height:1.1}
 .plan .pprice{font-size:clamp(1.8rem,3vw,2.3rem);font-weight:600;margin:2px 0 0;letter-spacing:-.025em;line-height:1.1}
 .plan .pday{margin:8px 0 22px;font-size:.95rem;color:var(--mut)}
-.plan ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:24px;flex:1}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
 .plan ul li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;line-height:1.55;color:var(--ink2)}
 .plan ul li .ck{flex:none;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;margin-top:1px;box-shadow:0 0 12px rgba(255,0,255,.35)}
 .plan ul li .ck svg{width:13px;height:13px}
 .plan ul li b{color:var(--brand2);font-weight:600}
 .plan .btn{width:100%;justify-content:center}
-/* Under the plan rather than inside it: the guarantee answers the hesitation
-   the price just raised, so it reads as a note on the offer - same width as the
-   card, quieter than the benefits it sits below. */
-.guarantee{display:flex;align-items:center;gap:14px;max-width:460px;margin:18px auto 0;
+/* Under the plans rather than inside one: the guarantee answers the hesitation
+   the prices just raised, and it holds for all three, so it reads as a note on
+   the offer - one line under the row, quieter than the benefits above it, and
+   the width of a card once the cards stack. */
+.guarantee{display:flex;align-items:center;gap:14px;width:fit-content;max-width:100%;margin:20px auto 0;
   background:var(--card);border:1px solid rgba(255,0,255,.3);border-radius:16px;padding:16px 18px;box-shadow:var(--shadow-sm)}
 .guarantee .gic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--soft2);color:var(--brand2);
   display:flex;align-items:center;justify-content:center}
@@ -722,6 +739,9 @@ footer{background:#050308;border-top:1px solid var(--line);color:var(--ink2);pad
 
 @media(max-width:980px){
   .mgrid,.pgrid{grid-template-columns:repeat(2,1fr)}
+  /* stacked, the badge hanging off each card's top edge needs room of its own */
+  .pricewrap{grid-template-columns:1fr;max-width:460px;margin:0 auto;gap:40px}
+  .guarantee{max-width:460px}
 }
 @media(max-width:900px){
   /* One column, and the CTA moves under the screenshot: on a phone the proof is
@@ -1693,24 +1713,66 @@ footer{background:#050308;border-top:1px solid var(--line);color:var(--ink2);pad
       <span class="eyebrow">Investasi</span>
     </div>
     <div class="pricewrap reveal">
+      <!-- Paket 3 bulan -->
+      <div class="plan">
+        <div class="pname">3 Bulan</div>
+        <div class="psub">Akses Membership Selama 3 Bulan</div>
+        <span class="pcoret">Rp1.995.000</span>
+        <div class="pprice">Rp799.000</div>
+        <div class="pday">Hanya Rp8.900/hari</div>
+        <ul>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Modul Rahasia Trading Crypto</b>&nbsp;- Modul pemula dari analisa tren, support &amp; resisten hingga keseluruhan sistem yang digunakan</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Market Alphas</b>&nbsp;- Analisa market harian oleh para mentor dan orang terpilih dalam komunitas</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Komunitas Crypto Ekslusif</b>&nbsp;- Komunitas untuk diskusi secara dua arah yang ramah untuk pemula hingga profesional</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Live Mentoring Mingguan</b>&nbsp;- Sesi live mingguan oleh para mentor untuk saling belajar dan diskusi terkait arah pasar crypto</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>CustomGPT AI Profit Booster</b>&nbsp;- AI untuk bantu kamu analisa arah pasar crypto</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>E-Book 30 Hari Jago Trading Crypto</b>&nbsp;- E-book terstruktur untuk pemula dengan bahasa yang mudah dimengerti</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Monthly Offline Gathering</b>&nbsp;- Kumpul offline secara rutin untuk kenal lebih dekat dengan para mentor &amp; teman-teman satu komunitas</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Charity Events</b>&nbsp;- Ikut memberikan dampak positif terhadap lingkungan sekitar selagi lo belajar trading crypto</span></li>
+        </ul>
+        <a class="btn primary" href="https://cryptoteknikal.id/index.php/product/crypto-teknikal-academy-3-bulan/">Belajar &amp; Profit Sekarang</a>
+      </div>
+
       <!-- Paket 12 bulan -->
       <div class="plan pro">
-        <div class="pname">Membership</div>
+        <span class="ptag">Best Deal</span>
+        <div class="pname">12 Bulan</div>
         <div class="psub">Akses Membership Selama 12 Bulan</div>
-        <span class="pcoret">Rp15.000.000</span>
+        <span class="pcoret">Rp4.995.000</span>
         <div class="pprice">Rp1.999.000</div>
         <div class="pday">Hanya Rp5.500/hari</div>
         <ul>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Modul Rahasia Trading Crypto</b> - Modul pemula dari analisa tren, support &amp; resisten hingga keseluruhan sistem yang digunakan</span></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Market Alphas</b> - Analisa market harian oleh para mentor dan orang terpilih dalam komunitas</span></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Komunitas Crypto Ekslusif</b> - Komunitas untuk diskusi secara dua arah yang ramah untuk pemula hingga profesional</span></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Live Mentoring Mingguan</b> - Sesi live mingguan oleh para mentor untuk saling belajar dan diskusi terkait arah pasar crypto</span></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>CustomGPT AI Profit Booster</b> - AI untuk bantu kamu analisa arah pasar crypto</span></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>E-Book 30 Hari Jago Trading Crypto</b> - E-book terstruktur untuk pemula dengan bahasa yang mudah dimengerti</span></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Monthly Offline Gathering</b> - Kumpul offline secara rutin untuk kenal lebih dekat dengan para mentor &amp; teman-teman satu komunitas</span></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Charity Events</b> - Ikut memberikan dampak positif terhadap lingkungan sekitar selagi lo belajar trading crypto</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Modul Rahasia Trading Crypto</b>&nbsp;- Modul pemula dari analisa tren, support &amp; resisten hingga keseluruhan sistem yang digunakan</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Market Alphas</b>&nbsp;- Analisa market harian oleh para mentor dan orang terpilih dalam komunitas</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Komunitas Crypto Ekslusif</b>&nbsp;- Komunitas untuk diskusi secara dua arah yang ramah untuk pemula hingga profesional</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Live Mentoring Mingguan</b>&nbsp;- Sesi live mingguan oleh para mentor untuk saling belajar dan diskusi terkait arah pasar crypto</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>CustomGPT AI Profit Booster</b>&nbsp;- AI untuk bantu kamu analisa arah pasar crypto</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>E-Book 30 Hari Jago Trading Crypto</b>&nbsp;- E-book terstruktur untuk pemula dengan bahasa yang mudah dimengerti</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Monthly Offline Gathering</b>&nbsp;- Kumpul offline secara rutin untuk kenal lebih dekat dengan para mentor &amp; teman-teman satu komunitas</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Charity Events</b>&nbsp;- Ikut memberikan dampak positif terhadap lingkungan sekitar selagi lo belajar trading crypto</span></li>
         </ul>
         <a class="btn primary" href="https://cryptoteknikal.id/index.php/product/crypto-teknikal-academy-1-tahun/">Belajar &amp; Profit Sekarang</a>
+      </div>
+
+      <!-- Paket lifetime -->
+      <div class="plan">
+        <span class="ptag soft">Best Seller</span>
+        <div class="pname">Lifetime</div>
+        <div class="psub">Akses Membership Selamanya</div>
+        <span class="pcoret">Rp15.000.000</span>
+        <div class="pprice">Rp4.999.000</div>
+        <div class="pday">Sekali bayar, tanpa perpanjangan</div>
+        <ul>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Modul Rahasia Trading Crypto</b>&nbsp;- Modul pemula dari analisa tren, support &amp; resisten hingga keseluruhan sistem yang digunakan</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Market Alphas</b>&nbsp;- Analisa market harian oleh para mentor dan orang terpilih dalam komunitas</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Komunitas Crypto Ekslusif</b>&nbsp;- Komunitas untuk diskusi secara dua arah yang ramah untuk pemula hingga profesional</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Live Mentoring Mingguan</b>&nbsp;- Sesi live mingguan oleh para mentor untuk saling belajar dan diskusi terkait arah pasar crypto</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>CustomGPT AI Profit Booster</b>&nbsp;- AI untuk bantu kamu analisa arah pasar crypto</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>E-Book 30 Hari Jago Trading Crypto</b>&nbsp;- E-book terstruktur untuk pemula dengan bahasa yang mudah dimengerti</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Monthly Offline Gathering</b>&nbsp;- Kumpul offline secara rutin untuk kenal lebih dekat dengan para mentor &amp; teman-teman satu komunitas</span></li>
+          <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Charity Events</b>&nbsp;- Ikut memberikan dampak positif terhadap lingkungan sekitar selagi lo belajar trading crypto</span></li>
+        </ul>
+        <a class="btn primary" href="https://cryptoteknikal.id/index.php/product/crypto-teknikal-academy-lifetime/">Belajar &amp; Profit Sekarang</a>
       </div>
     </div>
     <div class="guarantee reveal">
@@ -1883,19 +1945,22 @@ footer{background:#050308;border-top:1px solid var(--line);color:var(--ink2);pad
   // only worth its space once the hero CTA has gone behind the nav - measured
   // against the nav's own height, because that is the point the hero button
   // stops being visible - and it stands down again wherever one of the page's
-  // own buttons has come back on screen: the three that close a section, the
-  // plan's. Either way the reader is never offered the same tap twice at once.
+  // own buttons has come back on screen, the three that close a section, and
+  // anywhere in the prices themselves: the bar only ever points at #harga, and
+  // three plans stacked on a phone run several screens between their buttons.
+  // Either way the reader is never offered the same tap twice at once.
   var nav = document.getElementById('nav');
   var stickycta = document.querySelector('.stickycta');
   var heroCta = document.querySelector('.herobtns .btn');
   var pageCtas = Array.prototype.slice.call(document.querySelectorAll('.btn.primary'))
     .filter(function(b){ return b !== heroCta && !(stickycta && stickycta.contains(b)); });
+  var offers = pageCtas.concat(document.getElementById('harga') || []);
   var onScroll = function(){
     nav.classList.toggle('scrolled', window.scrollY > 8);
     if(stickycta && heroCta){
       // on screen means between the nav's bottom edge, where a button stops
       // being visible, and the line the reveal uses, where it starts being.
-      var offered = pageCtas.some(function(b){
+      var offered = offers.some(function(b){
         var r = b.getBoundingClientRect();
         return r.bottom > nav.offsetHeight && r.top < window.innerHeight - 60;
       });
