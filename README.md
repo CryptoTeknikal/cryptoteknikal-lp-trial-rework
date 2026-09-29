@@ -317,6 +317,13 @@ The two shots are set on the page's own ground - labels in its type, the *After*
 in its magenta - and rendered at 960x537, 1.5 times the still's 640x358 box, as a
 `quality=84` `webp` of about 22KB.
 
+The community card's still is a desktop Discord shot, not a phone one, cut to the still's
+own 640:358 so it fills the box rather than being letterboxed in it (944x528,
+`quality=82`, about 14KB). It is one exchange in *diskusi-crypto*: a member asks for AR
+and a mentor answers with the 1D chart. The window's title bar and channel header stay
+on top, laid out as Discord lays them out at that width - title centred, channel name
+left, header icons right; the conversation under them is the shot as taken.
+
 ### Decks
 
 A deck is one shot at a time in a box of a fixed shape, the rest waiting behind it, and
