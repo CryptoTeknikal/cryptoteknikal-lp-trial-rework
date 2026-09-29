@@ -304,6 +304,19 @@ before a single one has decoded. Together the eight come to about 53KB. Every ot
 visual - module icons, badges - is hand-built HTML/CSS/SVG, which is why the page stays
 fast and looks consistent.
 
+The first value card's still is a before and after, composed rather than shot: on the
+left, *Before*, Alexander Brian's `$MARSCOIN` call in the member Discord - entry, stop
+loss, take profit and the chart they sit on - and on the right, *After*, a member
+replying with the trade he took on it, MARSCOINUSDT Perpetual +145,13%. The member's
+exchange card is cleaned the way the hero's are: its referral footer (the exchange's
+logo, a referral code and a QR code) is cut off under the last figures and the card
+closed again with the rounded corners it started with, the exchange's logo that fills
+the card's background is lifted out from behind the type, and the account's avatar and
+username are frosted. The Discord names stay, as they do on every other testimonial.
+The two shots are set on the page's own ground - labels in its type, the *After* frame
+in its magenta - and rendered at 960x537, 1.5 times the still's 640x358 box, as a
+`quality=84` `webp` of about 22KB.
+
 ### Decks
 
 A deck is one shot at a time in a box of a fixed shape, the rest waiting behind it, and
@@ -389,8 +402,9 @@ at `quality=82`, and swapping the base64 in the matching `<img>`.
 5. *Emang Bisa Cuan Dua Digit dari Trading Crypto?* - the question, then the three
    market conditions the answer covers (bullish / bearish / sideways)
 6. *Kenapa Pilih Crypto Teknikal Academy* - the eyebrow is the whole heading, then
-   the logo sting and 4 value cards, each opening on a still from the same drawn
-   series the modules use
+   the logo sting and 4 value cards, each opening on a still: a before and after
+   for the system that holds up - a mentor's call and a member's result on it - then
+   screenshots of a lesson, the community and a live mentoring session
 7. *Pendidik dan Analis Crypto Teknikal Academy* - the two mentors
 8. Before and after - the eyebrow is the whole heading, then the two cards
 9. Proof - a moving wall of member screenshots, two columns against each other
