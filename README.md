@@ -1,10 +1,21 @@
-# cryptoteknikal-lp-rework
+# cryptoteknikal-lp-trial-rework
 
-Landing page rework for **Crypto Teknikal Academy**, built to replace the current
-Scalev page at `crypto-teknikal.myscalev.com/lpctact`.
+Landing page for the **Crypto Teknikal Academy free membership trial** - the other way
+to become a member: instead of paying for a plan, the reader gets in by trading. The
+first month is free; the sign-up form the page ends on carries the steps (open and fund
+an OKX account under the academy's referral code, then send the UID and a Discord
+username) and the rule for keeping the membership after the trial (active trading, a
+minimum monthly volume).
+
+It is a duplicate of the membership page,
+[cryptoteknikal-lp-rework](https://github.com/CryptoTeknikal/cryptoteknikal-lp-rework),
+history and all, with one difference: the pricing section holds a single plan, the free
+month, instead of the three paid ones. Everything else - the copy, the proof, the bonuses,
+the design - is the membership page's, and the notes below still describe it. See
+[The trial plan](#the-trial-plan) for what changed.
 
 - **Copy / offer data:** taken from the existing Scalev landing page (headline, problem
-  framing, before-after, 7 bonuses with their values, 3 pricing tiers, FAQ). Nothing about
+  framing, before-after, 7 bonuses with their values, pricing, FAQ). Nothing about
   the offer was invented - only the wording was tightened. The nine modules are the one
   place that goes further than the Scalev page: the titles are the academy's own
   curriculum list, and the line under each was written here to say what it covers.
@@ -52,7 +63,7 @@ plain self-contained file that gets deployed. For a byte-exact preview of the
 deployed page, `python3 -m http.server 8899` still works.
 
 The published copy lives on GitHub Pages:
-<https://cryptoteknikal.github.io/cryptoteknikal-lp-rework/>
+<https://cryptoteknikal.github.io/cryptoteknikal-lp-trial-rework/>
 
 ## Using it on Scalev
 
@@ -67,21 +78,29 @@ The page is a complete standalone HTML document, so there are two options:
    `<body>` tags themselves. One edit is needed for this route: the video's
    `<source src="testimoni-member.mp4">` is relative to wherever the page is served
    from, so point it at the Pages copy -
-   `https://cryptoteknikal.github.io/cryptoteknikal-lp-rework/testimoni-member.mp4` -
+   `https://cryptoteknikal.github.io/cryptoteknikal-lp-trial-rework/testimoni-member.mp4` -
    or upload the file to Scalev and use its URL.
 
-### Checkout links
+### The trial plan
 
-All three buy buttons currently point at the same WooCommerce product URLs the old
-page used. They appear once each, in the three pricing cards:
+The pricing section is one card, centred and held to the 460px the membership page's
+plans stack at on a phone:
+
+- **1 Bulan** - *Ujicoba Membership*
+- <s>Rp500.000</s> struck through, then **Gratis!\*** - the asterisk is a footnote mark,
+  and the line under the price is its footnote: *\*Akses ujicoba membership selama 1
+  bulan, slot terbatas*
+- the same eight benefits every membership plan lists
+- the button, *Belajar & Profit Sekarang*, goes to the trial sign-up form:
 
 ```
-https://cryptoteknikal.id/index.php/product/crypto-teknikal-academy-3-bulan/
-https://cryptoteknikal.id/index.php/product/crypto-teknikal-academy-1-tahun/
-https://cryptoteknikal.id/index.php/product/crypto-teknikal-academy-lifetime/
+https://bit.ly/ct-member-trial-lpform
 ```
 
-Swap them for Scalev checkout URLs when the products are wired up there.
+That is the page's one exit. Every other buy button - the hero, the three *Gabung
+Sekarang*s, the sticky bar on mobile - points at `#harga`, so the reader always sees
+the offer before the form. The membership page's 30-day money-back guarantee is gone
+with the paid plans: there is nothing to refund on a free month.
 
 ## Customising
 
@@ -164,7 +183,7 @@ none, so a reader who wants a person scrolls to the bottom or takes the offer:
 | Email - footer Contact | `tanya@cryptoteknikal.id` |
 | Telegram - footer Social Media | `https://t.me/cryptoteknikal_id` |
 | Instagram / TikTok / YouTube / X / Threads - footer Social Media | `@cryptoteknikal_id`, except YouTube `@cryptoteknikal` and X `@cryptoteknikal_` |
-| Checkout - pricing card | see [Checkout links](#checkout-links) |
+| Trial sign-up - pricing card | see [The trial plan](#the-trial-plan) |
 
 The WhatsApp glyph is a `<symbol id="wamark">` in the sprite at the top of `<body>`, where
 the page keeps its shared glyphs; the footer Contact row is its one call site. Telegram is
@@ -379,10 +398,8 @@ at `quality=82`, and swapping the base64 in the matching `<img>`.
 11. Who it is for (6 personas)
 12. 7 bonuses, each with the shots that prove it - four of them decks - + total
     value Rp15.000.000
-13. Pricing - the Scalev page's three plans side by side: 3 Bulan (Rp799.000),
-    12 Bulan (Rp1.999.000, the featured *Best Deal*) and Lifetime (Rp4.999.000,
-    *Best Seller*), each with the same benefits, and the 30-day money-back guarantee
-    under the row
+13. Pricing - one plan, the free month: 1 Bulan, Rp500.000 struck through to
+    *Gratis!\**, with the footnote under it and the button to the trial form
 14. Warren Buffett quote - a ruled band, the portrait standing on the bottom rule,
     a *Gabung Sekarang* under the line it argues for
 15. FAQ - centred head over the accordion, then a last *Gabung Sekarang*
@@ -394,7 +411,7 @@ at `quality=82`, and swapping the base64 in the matching `<img>`.
   parked below the fold until the hero CTA has gone behind the nav, and drops back down
   wherever one of the page's own buttons has come onto the screen - the three that close
   a section - or any part of the pricing section, since the bar only points there and
-  the three plans stacked on a phone run several screens between their buttons. The
+  the plan on a phone runs well over a screen between its price and its button. The
   reader is never offered the same button twice at once.
   The top threshold is the nav's own height, measured rather than hardcoded; the bottom
   one is the line the reveal already uses.
@@ -413,7 +430,7 @@ at `quality=82`, and swapping the base64 in the matching `<img>`.
   the hero CTA above the fold, a *Gabung Sekarang* closing each of the three sections
   that finish an argument - the modules and what they are worth, the quote, the last
   answered question - and on mobile the sticky bar covering the stretches between them.
-  All four point at `#harga` rather than the checkout, so the reader always sees the
+  All four point at `#harga` rather than the trial form, so the reader always sees the
   price before the cart.
 - **No band shows an edge.** `.band.soft` does not paint `--soft` flat; it ramps from
   `--bg` to `--soft` over 170px at each end, so where two bands meet they are already the
