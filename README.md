@@ -81,6 +81,15 @@ The page is a complete standalone HTML document, so there are two options:
    `https://cryptoteknikal.github.io/cryptoteknikal-lp-trial-rework/testimoni-member.mp4` -
    or upload the file to Scalev and use its URL.
 
+The live copy is the Scalev HTML Mode page *LP CTA CT Trial*, at
+`crypto-teknikal.myscalev.com/lpctact-trial`. It was made with the editor's
+*Import HTML -> Upload File*, from a copy of `index.html` with two edits: the video
+`src` points at the Pages URL above, and the page script's comment on the video says
+so. HTML Mode pages send a Content-Security-Policy whose `media-src` allows only
+Scalev's own domains, so *Security -> Media Sources* also lists
+`https://cryptoteknikal.github.io`; without it the video never loads. Pages must stay
+enabled on this repo for the same reason.
+
 ### The trial plan
 
 The pricing section is one card, centred and held to the 460px the membership page's
